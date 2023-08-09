@@ -5,9 +5,8 @@
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpuri/react-draft-wysiwyg.git"
+    "url": "https://github.com/blinemedical/react-draft-wysiwyg.git"
   },
-  "author": "Jyoti Puri",
   "devDependencies": {
     "@storybook/react": "^5.2.8",
     "autoprefixer": "^9.7.3",
