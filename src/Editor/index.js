@@ -10,6 +10,7 @@ import {
   convertFromRaw,
   CompositeDecorator
 } from "draft-js";
+import getDefaultKeyBinding from 'draft-js/lib/getDefaultKeyBinding';
 import {
   changeDepth,
   handleNewLine,
@@ -18,6 +19,7 @@ import {
   extractInlineStyle,
   getSelectedBlocksType
 } from "draftjs-utils";
+import Keys from "fbjs/lib/Keys";
 import classNames from "classnames";
 import ModalHandler from "../event-handler/modals";
 import FocusHandler from "../event-handler/focus";
@@ -36,6 +38,8 @@ import defaultToolbar from "../config/defaultToolbar";
 import localeTranslations from "../i18n";
 import "./styles.css";
 import "../../css/Draft.css";
+
+import type {DraftEditorCommand} from 'draft-js/lib/DraftEditorCommand';
 
 export default class WysiwygEditor extends Component {
   static propTypes = {
@@ -195,6 +199,21 @@ export default class WysiwygEditor extends Component {
   onEditorMouseDown: Function = (): void => {
     this.focusHandler.onEditorMouseDown();
   };
+
+  keyBindingFn: Function = (e): ?DraftEditorCommand => {
+    // eslint-disable-next-line default-case
+    switch (e.keyCode) {
+      case Keys.TAB:
+        this.onTab(e);
+        break;
+      case Keys.UP:
+      case Keys.DOWN:
+        this.onUpDownArrow(e);
+        break;
+    }
+
+    return getDefaultKeyBinding(e);
+  }
 
   onTab: Function = (event): boolean => {
     const { onTab } = this.props;
@@ -519,7 +538,7 @@ export default class WysiwygEditor extends Component {
             toolbarCustomButtons.map((button, index) =>
               React.cloneElement(button, { key: index, ...controlProps })
             )}
-        </div>  
+        </div>
         )}
         <div
           ref={this.setWrapperReference}
@@ -533,9 +552,7 @@ export default class WysiwygEditor extends Component {
         >
           <Editor
             ref={this.setEditorReference}
-            onTab={this.onTab}
-            onUpArrow={this.onUpDownArrow}
-            onDownArrow={this.onUpDownArrow}
+            keyBindingFn={this.keyBindingFn}
             editorState={editorState}
             onChange={this.onChange}
             blockStyleFn={blockStyleFn}
