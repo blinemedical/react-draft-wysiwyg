@@ -21,6 +21,7 @@ import {
 } from "draftjs-utils";
 import Keys from "fbjs/lib/Keys";
 import classNames from "classnames";
+import { DraftEditorCommand } from 'draft-js/lib/DraftEditorCommand';
 import ModalHandler from "../event-handler/modals";
 import FocusHandler from "../event-handler/focus";
 import KeyDownHandler from "../event-handler/keyDown";
@@ -38,8 +39,6 @@ import defaultToolbar from "../config/defaultToolbar";
 import localeTranslations from "../i18n";
 import "./styles.css";
 import "../../css/Draft.css";
-
-import type {DraftEditorCommand} from 'draft-js/lib/DraftEditorCommand';
 
 export default class WysiwygEditor extends Component {
   static propTypes = {
