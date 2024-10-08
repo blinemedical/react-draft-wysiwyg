@@ -10,7 +10,7 @@ import {
   convertFromRaw,
   CompositeDecorator
 } from "draft-js";
-import getDefaultKeyBinding from 'draft-js/lib/getDefaultKeyBinding';
+import getDefaultKeyBinding from "draft-js/lib/getDefaultKeyBinding";
 import {
   changeDepth,
   handleNewLine,
@@ -21,7 +21,7 @@ import {
 } from "draftjs-utils";
 import Keys from "fbjs/lib/Keys";
 import classNames from "classnames";
-import { DraftEditorCommand } from 'draft-js/lib/DraftEditorCommand';
+import { DraftEditorCommand } from "draft-js/lib/DraftEditorCommand";
 import ModalHandler from "../event-handler/modals";
 import FocusHandler from "../event-handler/focus";
 import KeyDownHandler from "../event-handler/keyDown";
